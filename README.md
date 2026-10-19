@@ -13,7 +13,7 @@ Proyecto del curso de Inteligencia Artificial — Universidad Tecnológica de Bo
 
 ## 1. Requisitos
 
-- Python 3.11 o superior (desarrollado con Python 3.14).
+- Python 3.11 o superior (probado con Python 3.13 y 3.14).
 - Unos 2 GB libres en disco para las teselas de Hansen.
 - Conexión a internet para descargar los datos la primera vez.
 
@@ -30,6 +30,7 @@ python -m venv .venv
 source .venv/bin/activate
 
 pip install -r requirements.txt
+pip install -r requirements-notebooks.txt   # solo si vas a abrir los notebooks
 ```
 
 Todos los comandos de este README se ejecutan **desde la raíz del repositorio**.
@@ -52,7 +53,9 @@ python -c "from src.forestguard.data import descargar_tesela, recortar; descarga
 
 - Las teselas completas quedan en `data/raw/` y los recortes en `data/processed/guaviare_<capa>.tif`.
 - `bbox = (lon_min, lat_min, lon_max, lat_max)` en grados (EPSG:4326).
-- Los datos **no se suben a git** (ver `.gitignore`).
+- Las teselas completas **no se suben a git** (ver `.gitignore`). Los tres recortes de la zona piloto
+  (`data/processed/guaviare_*.tif`) sí están en el repositorio, porque los usa la aplicación desplegada;
+  con ellos se puede ejecutar el agente sin descargar nada.
 
 ## 4. Ejecutar el agente
 
@@ -93,7 +96,28 @@ Implementado en `src/forestguard/agent.py`, método `ForestGuardAgent.ejecutar()
      ```
 3. Volver a ejecutar `python scripts/run_agent.py`: el modelo se reentrena incluyendo esas inspecciones.
 
-## 5. Pruebas de desempeño (Fase 3)
+## 5. Aplicación web (evidencia de funcionamiento)
+
+**Enlace público:** <URL-de-la-app> 
+
+La aplicación (`streamlit_app.py`) ejecuta el agente real del repositorio. Cada corrida empieza desde cero en
+una carpeta temporal que solo contiene los tres rásteres recortados. Tiene tres pestañas:
+
+| Pestaña | Qué permite |
+|---|---|
+| 1 · Ejecutar el agente | Escenario típico: ciclo completo en vivo, celdas priorizadas, mapa, evaluación del modelo, registro con marca de tiempo y descarga de reportes. Botón para simular inspecciones y reentrenar (ciclo de aprendizaje) |
+| 2 · Escenario de falla | Inyecta una entrada inválida (capa faltante, tamaños distintos, valores fuera de rango, archivo corrupto, zona sin datos o 40 % sin dato) y ejecuta el agente: debe detenerse con un error controlado y sin reportes |
+| 3 · Pruebas de desempeño | Tabla oficial de resultados, ejecución en vivo de un escenario de backtest (con la misma semilla reproduce la bitácora) y la suite abreviada de pruebas |
+
+La pestaña **Inicio** incluye las instrucciones y los casos de prueba sugeridos.
+
+Para ejecutarla en tu computador:
+
+```bash
+streamlit run streamlit_app.py
+```
+
+## 6. Pruebas de desempeño (Fase 3)
 
 ```bash
 python scripts/pruebas_desempeno.py --zona guaviare                   # completas: 5 repeticiones
@@ -109,7 +133,7 @@ python scripts/pruebas_desempeno.py --zona guaviare --repeticiones 1 --sin-agent
   - `corridas_guaviare_<fecha>.csv` — una fila por corrida.
   - `evidencia_<fecha>/` — reportes reales generados por el agente durante las pruebas.
 
-## 6. Salidas
+## 7. Salidas
 
 | Archivo | Contenido |
 |---|---|
@@ -134,15 +158,17 @@ Cada corrida escribe en `logs/ejecucion_<zona>.jsonl` un evento por paso, con fe
 Fases: `sistema` (inicio, fin o interrupción del ciclo), `memoria`, `percepcion`, `aprendizaje`,
 `decision` y `accion`. Si el ciclo falla, queda un evento `ciclo_interrumpido` con el error.
 
-## 7. Estructura
+## 8. Estructura
 
 ```
 forestguard-agent/
 ├── README.md
 ├── requirements.txt
+├── requirements-notebooks.txt
+├── streamlit_app.py    # aplicación web desplegada
 ├── data/
 │   ├── raw/            # teselas descargadas (no se versionan)
-│   └── processed/      # recortes de la zona y tabla de celdas
+│   └── processed/      # recortes de la zona (versionados) y tabla de celdas
 ├── notebooks/
 │   ├── 01_exploracion_datos.ipynb
 │   ├── 02_construccion_features.ipynb
@@ -163,7 +189,7 @@ forestguard-agent/
 └── outputs/            # reportes, mapas y resultados de pruebas
 ```
 
-## 8. Limitaciones
+## 9. Limitaciones
 
 - Hansen mide pérdida de cobertura arbórea (incluye incendios y plantaciones), no deforestación ilegal.
 - Datos anuales de 30 m: sirven para priorizar inspecciones, no para alertas en tiempo real.

@@ -1,0 +1,4 @@
+# Adicionales para abrir los notebooks (instalar después de requirements.txt)
+jupyterlab==4.6.4
+ipykernel==7.4.0
+geopandas==1.2.0

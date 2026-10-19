@@ -12,10 +12,14 @@ __pycache__/
 
 # ===== Datos (pesados; se descargan con src/forestguard/data.py, ver README §3) =====
 data/raw/
-data/processed/*
-!data/processed/.gitkeep
 *.tif
 *.tiff
+data/processed/*
+!data/processed/.gitkeep
+# Excepción: recortes de la zona piloto. Los usa la aplicación desplegada (streamlit_app.py)
+!data/processed/guaviare_treecover2000.tif
+!data/processed/guaviare_lossyear.tif
+!data/processed/guaviare_datamask.tif
 
 # ===== Generados por el agente en cada corrida =====
 # Memoria: modelo entrenado, historial y feedback (se recrean al ejecutar)

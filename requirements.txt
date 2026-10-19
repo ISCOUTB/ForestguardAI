@@ -1,11 +1,12 @@
-numpy
-pandas
-rasterio
-geopandas
-scikit-learn
-joblib
-folium
-matplotlib
-jupyterlab
-ipykernel
-requests
+# Versiones con las que se desarrolló y probó el proyecto
+numpy==2.5.4
+pandas==3.0.6
+rasterio==1.5.2
+scikit-learn==1.9.1
+joblib==1.6.0
+folium==0.20.0
+matplotlib==3.11.2
+requests==2.34.2
+
+# Aplicación web (streamlit_app.py)
+streamlit==1.64.0
