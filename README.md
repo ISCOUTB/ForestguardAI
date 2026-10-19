@@ -98,7 +98,7 @@ Implementado en `src/forestguard/agent.py`, método `ForestGuardAgent.ejecutar()
 
 ## 5. Aplicación web (evidencia de funcionamiento)
 
-**Enlace público:** https://github.com/ISCOUTB/ForestguardAI 
+**Enlace público:** https://forestguard-agent.streamlit.app/
 
 La aplicación (`streamlit_app.py`) ejecuta el agente real del repositorio. Cada corrida empieza desde cero en
 una carpeta temporal que solo contiene los tres rásteres recortados. Tiene tres pestañas:
