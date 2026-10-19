@@ -1,0 +1,42 @@
+# ===== Entorno de Python =====
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# ===== Jupyter =====
+.ipynb_checkpoints/
+
+# ===== Datos (pesados; se descargan con src/forestguard/data.py, ver README §3) =====
+data/raw/
+data/processed/*
+!data/processed/.gitkeep
+*.tif
+*.tiff
+
+# ===== Generados por el agente en cada corrida =====
+# Memoria: modelo entrenado, historial y feedback (se recrean al ejecutar)
+memory/*
+!memory/.gitkeep
+
+# Registro de ejecución (crece en cada corrida)
+logs/*
+!logs/.gitkeep
+
+# Reportes de corridas normales
+outputs/*
+!outputs/.gitkeep
+
+# ...EXCEPTO los resultados de las pruebas de desempeño (entregable de la Fase 3)
+!outputs/pruebas/
+!outputs/pruebas/**
+
+# ===== Sistema operativo y editores =====
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
