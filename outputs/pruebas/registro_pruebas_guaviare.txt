@@ -1,0 +1,159 @@
+====================================================================================================
+PRUEBAS DE DESEMPEÑO · ForestGuard-Agent · zona guaviare
+Inicio: 2026-10-18 23:53:43   |   ID de ejecución: 20261018_235343
+====================================================================================================
+Entorno: Python 3.13.12 · numpy 2.5.4 · pandas 3.0.6 · scikit-learn 1.9.1 · rasterio 1.5.2 · Windows-11-10.0.26200-SP0
+Script: pruebas_desempeno.py (sha256 f26f06b4cee0). Si este hash cambia entre ejecuciones, cambió algo del script.
+Repeticiones por escenario: 5 (semillas del Random Forest: 42..46). Los datos son fijos: la única aleatoriedad es la del modelo; la desviación estándar es muestral (n-1).
+
+REGLAS FIJADAS ANTES DE EJECUTAR (constantes al inicio del script)
+  Accuracy                 = (TP+TN)/(TP+TN+FP+FN)                      umbral >= 85%
+  Recall                   = TP/(TP+FN)                                 umbral >= 85%
+  Falsos positivos (FPR)   = FP/(FP+TN)  (informativo: FP/(FP+TP))      umbral <  15%
+  Tiempo de respuesta      = segundos de agente.ejecutar(), desde los ráster recortados hasta el reporte   umbral <= 24 h
+  Alertas geolocalizadas   = alertas con polígono cerrado dentro de la zona y riesgo en [0,1] / alertas generadas   umbral = 100%
+  Manejo de fallas         = fallas inyectadas que terminan en error controlado y sin reportes / fallas inyectadas   umbral = 100%
+  Unidad de evaluación: celda de ~1 km. Alerta real = pérdida de bosque >= umbral de hectáreas del panel en el año predicho.
+  Punto de operación: umbral de riesgo = el mayor que logra recall >= 85% en VALIDACIÓN (nunca en el año de prueba).
+  Criterio de aprobación: la media sobre los escenarios NORMALES (todas sus repeticiones) cumple el umbral. Los escenarios LÍMITE se reportan aparte; los de FALLA se evalúan en la fila de manejo de fallas.
+
+Panel: 258,732 filas | alerta = pérdida >= 2.0 ha en el año siguiente | zona de 12,321 celdas con bosque
+
+----------------------------------------------------------------------------------------------------
+1) ESCENARIOS DE BACKTEST (accuracy, recall, FPR; tiempo de entrenamiento)
+----------------------------------------------------------------------------------------------------
+
+[N-2019] (normal) predecir 2019 (entrena <= 2016, valida 2017-2018)
+  celdas de prueba: 12,321 | alertas reales: 1593 | entrenamiento: 160,173 filas
+  accuracy 76.0% ± 0.1 (n=5) | recall 91.9% ± 0.1 (n=5) | FPR 26.4% ± 0.1 (n=5) | falsas entre alertas 65.9% ± 0.1 (n=5)
+  referencia 'nunca alertar': accuracy 87.1% | top-20 precisión 70.0% ± 3.5 (n=5) | tiempo entrenar+predecir 5.8 s
+  (con el umbral de mejor F1, que usa el agente hoy: accuracy 80.0% | recall 87.4% | FPR 21.1%)
+
+[N-2020] (normal) predecir 2020 (entrena <= 2017, valida 2018-2019)
+  celdas de prueba: 12,321 | alertas reales: 1457 | entrenamiento: 172,494 filas
+  accuracy 79.3% ± 0.1 (n=5) | recall 88.9% ± 0.4 (n=5) | FPR 21.9% ± 0.1 (n=5) | falsas entre alertas 64.8% ± 0.1 (n=5)
+  referencia 'nunca alertar': accuracy 88.2% | top-20 precisión 75.0% ± 7.1 (n=5) | tiempo entrenar+predecir 6.2 s
+  (con el umbral de mejor F1, que usa el agente hoy: accuracy 84.5% | recall 78.4% | FPR 14.7%)
+
+[N-2021] (normal) predecir 2021 (entrena <= 2018, valida 2019-2020)
+  celdas de prueba: 12,320 | alertas reales: 1254 | entrenamiento: 184,815 filas
+  accuracy 83.9% ± 0.1 (n=5) | recall 81.9% ± 0.4 (n=5) | FPR 15.9% ± 0.2 (n=5) | falsas entre alertas 63.2% ± 0.2 (n=5)
+  referencia 'nunca alertar': accuracy 89.8% | top-20 precisión 93.0% ± 4.5 (n=5) | tiempo entrenar+predecir 5.8 s
+  (con el umbral de mejor F1, que usa el agente hoy: accuracy 88.6% | recall 66.8% | FPR 9.0%)
+
+[N-2022] (normal) predecir 2022 (entrena <= 2019, valida 2020-2021)
+  celdas de prueba: 12,319 | alertas reales: 1178 | entrenamiento: 197,136 filas
+  accuracy 85.3% ± 0.1 (n=5) | recall 82.9% ± 0.4 (n=5) | FPR 14.4% ± 0.2 (n=5) | falsas entre alertas 62.2% ± 0.2 (n=5)
+  referencia 'nunca alertar': accuracy 90.4% | top-20 precisión 78.0% ± 2.7 (n=5) | tiempo entrenar+predecir 7.0 s
+  (con el umbral de mejor F1, que usa el agente hoy: accuracy 89.8% | recall 63.0% | FPR 7.3%)
+
+[N-2023] (normal) predecir 2023 (entrena <= 2020, valida 2021-2022)
+  celdas de prueba: 12,319 | alertas reales: 656 | entrenamiento: 209,457 filas
+  accuracy 83.0% ± 0.1 (n=5) | recall 75.2% ± 0.4 (n=5) | FPR 16.5% ± 0.1 (n=5) | falsas entre alertas 79.6% ± 0.1 (n=5)
+  referencia 'nunca alertar': accuracy 94.7% | top-20 precisión 53.0% ± 7.6 (n=5) | tiempo entrenar+predecir 8.3 s
+  (con el umbral de mejor F1, que usa el agente hoy: accuracy 90.0% | recall 55.3% | FPR 8.0%)
+
+[N-2024] (normal) predecir 2024 (entrena <= 2021, valida 2022-2023)
+  celdas de prueba: 12,317 | alertas reales: 926 | entrenamiento: 221,777 filas
+  accuracy 86.0% ± 0.1 (n=5) | recall 70.6% ± 0.4 (n=5) | FPR 12.8% ± 0.1 (n=5) | falsas entre alertas 69.0% ± 0.1 (n=5)
+  referencia 'nunca alertar': accuracy 92.5% | top-20 precisión 60.0% ± 0.0 (n=5) | tiempo entrenar+predecir 8.7 s
+  (con el umbral de mejor F1, que usa el agente hoy: accuracy 92.2% | recall 34.0% | FPR 3.0%)
+
+[L-1ha] (limite) alerta >= 1 ha: más celdas positivas (predecir 2024)
+  celdas de prueba: 12,317 | alertas reales: 1263 | entrenamiento: 221,777 filas
+  accuracy 83.7% ± 0.1 (n=5) | recall 71.8% ± 0.5 (n=5) | FPR 14.9% ± 0.1 (n=5) | falsas entre alertas 64.6% ± 0.1 (n=5)
+  referencia 'nunca alertar': accuracy 89.7% | top-20 precisión 53.0% ± 4.5 (n=5) | tiempo entrenar+predecir 7.9 s
+  (con el umbral de mejor F1, que usa el agente hoy: accuracy 89.8% | recall 41.8% | FPR 4.7%)
+
+[L-5ha] (limite) alerta >= 5 ha: pocas alertas, mayor desbalance (predecir 2024)
+  celdas de prueba: 12,317 | alertas reales: 504 | entrenamiento: 221,777 filas
+  accuracy 89.1% ± 0.2 (n=5) | recall 70.8% ± 1.0 (n=5) | FPR 10.1% ± 0.2 (n=5) | falsas entre alertas 77.0% ± 0.2 (n=5)
+  referencia 'nunca alertar': accuracy 95.9% | top-20 precisión 48.0% ± 2.7 (n=5) | tiempo entrenar+predecir 10.9 s
+  (con el umbral de mejor F1, que usa el agente hoy: accuracy 95.5% | recall 19.3% | FPR 1.2%)
+
+[L-5anios] (limite) solo 5 años de entrenamiento (2017-2021) para predecir 2024
+  celdas de prueba: 12,317 | alertas reales: 926 | entrenamiento: 61,604 filas
+  accuracy 85.3% ± 0.1 (n=5) | recall 70.6% ± 0.4 (n=5) | FPR 13.5% ± 0.1 (n=5) | falsas entre alertas 70.2% ± 0.1 (n=5)
+  referencia 'nunca alertar': accuracy 92.5% | top-20 precisión 51.0% ± 2.2 (n=5) | tiempo entrenar+predecir 2.2 s
+  (con el umbral de mejor F1, que usa el agente hoy: accuracy 91.8% | recall 35.0% | FPR 3.6%)
+
+----------------------------------------------------------------------------------------------------
+2) ESCENARIOS PUNTA A PUNTA DEL AGENTE (tiempo de respuesta, geolocalización)
+----------------------------------------------------------------------------------------------------
+
+[E-completa-k20] zona al 100%, top 20, arranque en frío (construye el panel)
+  rep 1/5: 27.7 s, 20/20 alertas válidas
+  rep 2/5: 27.2 s, 20/20 alertas válidas
+  rep 3/5: 25.6 s, 20/20 alertas válidas
+  rep 4/5: 25.7 s, 20/20 alertas válidas
+  rep 5/5: 21.3 s, 20/20 alertas válidas
+  tiempo: media 25.5 s ± 2.5 (n=5) | máx 27.7 s
+
+[E-completa-k100] zona al 100%, top 100, arranque en frío (construye el panel)
+  rep 1/5: 25.3 s, 100/100 alertas válidas
+  rep 2/5: 23.2 s, 100/100 alertas válidas
+  rep 3/5: 23.8 s, 100/100 alertas válidas
+  rep 4/5: 24.8 s, 100/100 alertas válidas
+  rep 5/5: 25.5 s, 100/100 alertas válidas
+  tiempo: media 24.5 s ± 1.0 (n=5) | máx 25.5 s
+
+[E-mitad-k20] zona al 50%, top 20, arranque en frío (construye el panel)
+  rep 1/5: 4.7 s, 20/20 alertas válidas
+  rep 2/5: 4.1 s, 20/20 alertas válidas
+  rep 3/5: 3.9 s, 20/20 alertas válidas
+  rep 4/5: 4.7 s, 20/20 alertas válidas
+  rep 5/5: 4.4 s, 20/20 alertas válidas
+  tiempo: media 4.4 s ± 0.4 (n=5) | máx 4.7 s
+
+[E-cuarto-k20] zona al 25%, top 20, arranque en frío (construye el panel)
+  rep 1/5: 2.2 s, 20/20 alertas válidas
+  rep 2/5: 2.0 s, 20/20 alertas válidas
+  rep 3/5: 2.4 s, 20/20 alertas válidas
+  rep 4/5: 2.4 s, 20/20 alertas válidas
+  rep 5/5: 2.1 s, 20/20 alertas válidas
+  tiempo: media 2.2 s ± 0.2 (n=5) | máx 2.4 s
+
+Evidencia: salida del agente en la primera corrida (E-completa-k20)
+  | [recordar] historial: 0 filas | feedback con resultado: 0
+  | [percibir] no hay panel guardado, construyéndolo (tarda un poco)...
+  | [percibir] 12,316 celdas con bosque | pérdida 2024: 8,486 ha (0.93x el promedio histórico)
+  | [aprender] umbral de riesgo 0.795 | inspecciones usadas: 0
+  | [razonar] riesgo estimado para 12,316 celdas
+  | [decidir] top 20 celdas | niveles: {'alta': 20}
+  | [actuar] reportes guardados en C:\Users\Acer\AppData\Local\Temp\fg_e2e_tut6he9e\outputs
+  | [memorizar] historial: 20 filas
+Reportes de esa corrida copiados a: C:\Users\Acer\Desktop\forestguard-agent\outputs\pruebas\evidencia_20261018_235343
+
+----------------------------------------------------------------------------------------------------
+3) FALLAS ESPERADAS Y ENTORNO ADVERSO
+----------------------------------------------------------------------------------------------------
+[F-1] falta la capa lossyear: MANEJADA -> FileNotFoundError: No encuentro C:\Users\Acer\AppData\Local\Temp\fg_falla_9ev9ovul\data\processed\guaviare_lossyear.tif. ¿Ejecuta
+[F-2] capas con tamaños distintos: MANEJADA -> ValueError: Las tres capas deben tener la misma forma
+[F-3] lossyear con valores fuera de rango (99): MANEJADA -> ValueError: El agrupado por celdas no coincide con el total del ráster
+[F-4] archivo lossyear corrupto: MANEJADA -> RasterioIOError: 'C:\Users\Acer\AppData\Local\Temp\fg_falla_5q9u92ay\data\processed\guaviare_lossyear.tif' not recognized as be
+[F-5] zona sin datos (datamask = 0 en todo): MANEJADA -> ValueError: No quedan celdas con bosque para evaluar en esta zona.
+[A-1] entorno adverso: 40% de la zona sin dato: MANEJADA -> 432 celdas, columna mínima 11 (franja sin dato: columnas < 11)
+
+====================================================================================================
+TABLA DE RESULTADOS · ejecución 20261018_235343
+====================================================================================================
+| Medida de desempeño | Fórmula | Umbral | Casos ejecutados | Resultado obtenido | ¿Cumple? | Evidencia |
+| --- | --- | --- | --- | --- | --- | --- |
+| Accuracy | (TP+TN)/(TP+TN+FP+FN) | >= 85% | Normales: 6 escenarios × 5 rep.; límite: 3 × 5; falla esperada: 6 (ver fila de fallas) | Normales: 82.3% ± 3.6 (n=30); 2/6 escenarios cumplen. Límite: 86.0% ± 2.3 (n=15) | No | registro_pruebas_guaviare.txt (ejecución 20261018_235343); corridas_guaviare_20261018_235343.csv; video: min ___ (completar) |
+| Recall | TP/(TP+FN) | >= 85% | Normales: 6 escenarios × 5 rep.; límite: 3 × 5; falla esperada: 6 (ver fila de fallas) | Normales: 81.9% ± 7.5 (n=30); 2/6 escenarios cumplen. Límite: 71.1% ± 0.8 (n=15) | No | registro_pruebas_guaviare.txt (ejecución 20261018_235343); corridas_guaviare_20261018_235343.csv; video: min ___ (completar) |
+| Falsos positivos (FPR) | FP/(FP+TN) | < 15% | Normales: 6 escenarios × 5 rep.; límite: 3 × 5; falla esperada: 6 (ver fila de fallas) | Normales: 18.0% ± 4.8 (n=30); 2/6 escenarios cumplen. Límite: 12.9% ± 2.1 (n=15) | No | registro_pruebas_guaviare.txt (ejecución 20261018_235343); corridas_guaviare_20261018_235343.csv; video: min ___ (completar) |
+| Tiempo de respuesta | segundos de agente.ejecutar() (ráster recortado -> reporte) | <= 24 h | 4 escenarios × 5 rep. punta a punta (+ tiempos de entrenamiento de los backtests en el log) | media 14.2 s ± 11.2 (n=20); máx 27.7 s; 0 corridas con error | Sí | registro_pruebas_guaviare.txt (ejecución 20261018_235343); corridas_guaviare_20261018_235343.csv; video: min ___ (completar) |
+| Alertas geolocalizadas válidas (complementaria) | alertas válidas / alertas generadas | 100% | 20 reportes generados | 800/800 alertas válidas (100.0%) | Sí | registro_pruebas_guaviare.txt (ejecución 20261018_235343); corridas_guaviare_20261018_235343.csv; video: min ___ (completar); evidencia_20261018_235343/ |
+| Manejo de fallas esperadas (complementaria) | fallas controladas / fallas inyectadas | 100% | 6 (5 entradas inválidas + 1 entorno adverso) | 6/6 manejadas | Sí | registro_pruebas_guaviare.txt (ejecución 20261018_235343); corridas_guaviare_20261018_235343.csv; video: min ___ (completar) |
+
+NOTAS PARA EL INFORME
+- Las etiquetas salen de Hansen (lossyear), no de inspección en campo: se mide qué tan bien el modelo reproduce el producto satelital, no la deforestación ilegal real.
+- 'Falsos positivos < 15 %' admite dos lecturas (FP/(FP+TN) o FP/(FP+TP)); la bitácora muestra ambas. Indica cuál usaste.
+- Con pocas alertas, la accuracy es alta incluso si nunca se alerta (ver 'nunca alertar' arriba): no basta por sí sola.
+- Los casos de falla y el 40 % sin dato son SIMULADOS (Hansen no tiene sensores propios): inyectan archivos inválidos o vacíos.
+- El tiempo medido es el de procesamiento; no incluye la descarga de datos ni el tiempo que tarde alguien en ejecutar el agente.
+- Una sola zona y datos fijos: la desviación estándar solo refleja la aleatoriedad del modelo, no variación entre regiones.
+
+Duración total de las pruebas: 10.1 min
+Corridas individuales: C:\Users\Acer\Desktop\forestguard-agent\outputs\pruebas\corridas_guaviare_20261018_235343.csv
+

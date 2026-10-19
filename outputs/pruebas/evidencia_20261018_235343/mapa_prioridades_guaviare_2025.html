@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_ba331ece398656f1b977a3d5e989e24f {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_ba331ece398656f1b977a3d5e989e24f" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_ba331ece398656f1b977a3d5e989e24f = L.map(
+                "map_ba331ece398656f1b977a3d5e989e24f",
+                {
+                    center: [2.0067999999999997, -73.13414999999999],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_f18da3d7cc24c6808789367d5dc4a9aa = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_f18da3d7cc24c6808789367d5dc4a9aa.addTo(map_ba331ece398656f1b977a3d5e989e24f);
+        
+    
+            var tile_layer_54da60b30287bf747d1e6fe9277c4d77 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Esri World Imagery",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_54da60b30287bf747d1e6fe9277c4d77.addTo(map_ba331ece398656f1b977a3d5e989e24f);
+        
+    
+            var rectangle_c44cb569ff3bdc478726ec7aa1a47317 = L.rectangle(
+                [[1.69, -72.609], [1.6989999999999998, -72.60000000000001]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.35, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ba331ece398656f1b977a3d5e989e24f);
+        
+    
+        var popup_a3948c7b6f9dc934d7c6e0ab3f072cc8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_11ffc729a23f07a9daf734b5f1a01ef4 = $(`<div id="html_11ffc729a23f07a9daf734b5f1a01ef4" style="width: 100.0%; height: 100.0%;">#1 · celda 9978<br>Riesgo: 0.96 (alta)<br>Alertas históricas: 2<br>Pérdida último año: 33.1 ha</div>`)[0];
+                popup_a3948c7b6f9dc934d7c6e0ab3f072cc8.setContent(html_11ffc729a23f07a9daf734b5f1a01ef4);
+            
+        
+
+        rectangle_c44cb569ff3bdc478726ec7aa1a47317.bindPopup(popup_a3948c7b6f9dc934d7c6e0ab3f072cc8)
+        ;
+
+        
+    
+    
+            var rectangle_846f2bd4a968f8bdce064df7acda605e = L.rectangle(
+                [[1.9869999999999999, -73.491], [1.9959999999999998, -73.48200000000001]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.35, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ba331ece398656f1b977a3d5e989e24f);
+        
+    
+        var popup_5b16e2c08869a4d89261252eb84c459e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_703d9db464e129e980714916c6084f1c = $(`<div id="html_703d9db464e129e980714916c6084f1c" style="width: 100.0%; height: 100.0%;">#2 · celda 6217<br>Riesgo: 0.96 (alta)<br>Alertas históricas: 4<br>Pérdida último año: 20.8 ha</div>`)[0];
+                popup_5b16e2c08869a4d89261252eb84c459e.setContent(html_703d9db464e129e980714916c6084f1c);
+            
+        
+
+        rectangle_846f2bd4a968f8bdce064df7acda605e.bindPopup(popup_5b16e2c08869a4d89261252eb84c459e)
+        ;
+
+        
+    
+    
+            var rectangle_df1a13e899388c85d74fca8c4226e83a = L.rectangle(
+                [[2.2569999999999997, -73.22999999999999], [2.266, -73.221]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.35, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ba331ece398656f1b977a3d5e989e24f);
+        
+    
+        var popup_d638d19f6a69e1132a099ed9a1f36df1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c451a07d6d5ccc2eb1c0f1668e30c116 = $(`<div id="html_c451a07d6d5ccc2eb1c0f1668e30c116" style="width: 100.0%; height: 100.0%;">#3 · celda 2916<br>Riesgo: 0.96 (alta)<br>Alertas históricas: 4<br>Pérdida último año: 23.7 ha</div>`)[0];
+                popup_d638d19f6a69e1132a099ed9a1f36df1.setContent(html_c451a07d6d5ccc2eb1c0f1668e30c116);
+            
+        
+
+        rectangle_df1a13e899388c85d74fca8c4226e83a.bindPopup(popup_d638d19f6a69e1132a099ed9a1f36df1)
+        ;
+
+        
+    
+    
+            var rectangle_acdefdf4ef3948d85905e3058cb9fbfc = L.rectangle(
+                [[2.239, -73.22099999999999], [2.248, -73.212]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.35, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ba331ece398656f1b977a3d5e989e24f);
+        
+    
+        var popup_c61ff2f135556a9d729c5b9daa8b30c8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_43cdb5e456d3d2b531efb558ad09228b = $(`<div id="html_43cdb5e456d3d2b531efb558ad09228b" style="width: 100.0%; height: 100.0%;">#4 · celda 3139<br>Riesgo: 0.96 (alta)<br>Alertas históricas: 3<br>Pérdida último año: 13.5 ha</div>`)[0];
+                popup_c61ff2f135556a9d729c5b9daa8b30c8.setContent(html_43cdb5e456d3d2b531efb558ad09228b);
+            
+        
+
+        rectangle_acdefdf4ef3948d85905e3058cb9fbfc.bindPopup(popup_c61ff2f135556a9d729c5b9daa8b30c8)
+        ;
+
+        
+    
+    
+            var rectangle_3a979e8eaf854fb988af28686d2a58af = L.rectangle(
+                [[1.762, -72.54599999999999], [1.771, -72.537]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.35, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ba331ece398656f1b977a3d5e989e24f);
+        
+    
+        var popup_1f1ebb829840f8e6036d24579c03a8ff = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_28926dc3c79e538fe6fc8f61a2c1a610 = $(`<div id="html_28926dc3c79e538fe6fc8f61a2c1a610" style="width: 100.0%; height: 100.0%;">#5 · celda 9097<br>Riesgo: 0.96 (alta)<br>Alertas históricas: 2<br>Pérdida último año: 21.2 ha</div>`)[0];
+                popup_1f1ebb829840f8e6036d24579c03a8ff.setContent(html_28926dc3c79e538fe6fc8f61a2c1a610);
+            
+        
+
+        rectangle_3a979e8eaf854fb988af28686d2a58af.bindPopup(popup_1f1ebb829840f8e6036d24579c03a8ff)
+        ;
+
+        
+    
+    
+            var rectangle_27fb085e26f1e3121b567e8a0e8daec5 = L.rectangle(
+                [[2.2569999999999997, -73.22099999999999], [2.266, -73.212]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.35, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ba331ece398656f1b977a3d5e989e24f);
+        
+    
+        var popup_a6f8efcd92cdc76c9c94b81cc42712e4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e0e7801fb9e4c188fd3e32fe089d1101 = $(`<div id="html_e0e7801fb9e4c188fd3e32fe089d1101" style="width: 100.0%; height: 100.0%;">#6 · celda 2917<br>Riesgo: 0.96 (alta)<br>Alertas históricas: 4<br>Pérdida último año: 23.7 ha</div>`)[0];
+                popup_a6f8efcd92cdc76c9c94b81cc42712e4.setContent(html_e0e7801fb9e4c188fd3e32fe089d1101);
+            
+        
+
+        rectangle_27fb085e26f1e3121b567e8a0e8daec5.bindPopup(popup_a6f8efcd92cdc76c9c94b81cc42712e4)
+        ;
+
+        
+    
+    
+            var rectangle_90c1894b6254412f98edf8e40fdda1bc = L.rectangle(
+                [[1.7710000000000001, -72.591], [1.78, -72.58200000000001]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.35, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ba331ece398656f1b977a3d5e989e24f);
+        
+    
+        var popup_b2cf5377266b1600ebaefd6c152634ec = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fe4ae9d42dfed40963cbb2d4a5952479 = $(`<div id="html_fe4ae9d42dfed40963cbb2d4a5952479" style="width: 100.0%; height: 100.0%;">#7 · celda 8981<br>Riesgo: 0.96 (alta)<br>Alertas históricas: 3<br>Pérdida último año: 8.4 ha</div>`)[0];
+                popup_b2cf5377266b1600ebaefd6c152634ec.setContent(html_fe4ae9d42dfed40963cbb2d4a5952479);
+            
+        
+
+        rectangle_90c1894b6254412f98edf8e40fdda1bc.bindPopup(popup_b2cf5377266b1600ebaefd6c152634ec)
+        ;
+
+        
+    
+    
+            var rectangle_c2d0fcca7c19a270f164ba627de2f1cb = L.rectangle(
+                [[1.8699999999999999, -73.464], [1.8789999999999998, -73.45500000000001]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.35, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ba331ece398656f1b977a3d5e989e24f);
+        
+    
+        var popup_32dbab257089d6ca92f5a3ba3fd9773e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b9d05ee3f16a2eee878c7218bb39ce79 = $(`<div id="html_b9d05ee3f16a2eee878c7218bb39ce79" style="width: 100.0%; height: 100.0%;">#8 · celda 7663<br>Riesgo: 0.96 (alta)<br>Alertas históricas: 1<br>Pérdida último año: 27.6 ha</div>`)[0];
+                popup_32dbab257089d6ca92f5a3ba3fd9773e.setContent(html_b9d05ee3f16a2eee878c7218bb39ce79);
+            
+        
+
+        rectangle_c2d0fcca7c19a270f164ba627de2f1cb.bindPopup(popup_32dbab257089d6ca92f5a3ba3fd9773e)
+        ;
+
+        
+    
+    
+            var rectangle_98849724e3b0b75199ec55f1689ca78e = L.rectangle(
+                [[1.699, -72.609], [1.708, -72.60000000000001]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.35, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ba331ece398656f1b977a3d5e989e24f);
+        
+    
+        var popup_bd1ef16d6ace80fa626dabb3b41b278d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5b4ea55e9c35d0587059c1674d9050b0 = $(`<div id="html_5b4ea55e9c35d0587059c1674d9050b0" style="width: 100.0%; height: 100.0%;">#9 · celda 9867<br>Riesgo: 0.96 (alta)<br>Alertas históricas: 3<br>Pérdida último año: 6.5 ha</div>`)[0];
+                popup_bd1ef16d6ace80fa626dabb3b41b278d.setContent(html_5b4ea55e9c35d0587059c1674d9050b0);
+            
+        
+
+        rectangle_98849724e3b0b75199ec55f1689ca78e.bindPopup(popup_bd1ef16d6ace80fa626dabb3b41b278d)
+        ;
+
+        
+    
+    
+            var rectangle_d48bc3b38eb1d25038dd95cdf939b8dd = L.rectangle(
+                [[1.861, -73.464], [1.8699999999999999, -73.45500000000001]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.35, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ba331ece398656f1b977a3d5e989e24f);
+        
+    
+        var popup_dfbcba1a383688db1e32f014bb057827 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_56b1885c937e605705d54e1e78b9732e = $(`<div id="html_56b1885c937e605705d54e1e78b9732e" style="width: 100.0%; height: 100.0%;">#10 · celda 7774<br>Riesgo: 0.96 (alta)<br>Alertas históricas: 2<br>Pérdida último año: 15.8 ha</div>`)[0];
+                popup_dfbcba1a383688db1e32f014bb057827.setContent(html_56b1885c937e605705d54e1e78b9732e);
+            
+        
+
+        rectangle_d48bc3b38eb1d25038dd95cdf939b8dd.bindPopup(popup_dfbcba1a383688db1e32f014bb057827)
+        ;
+
+        
+    
+    
+            var rectangle_76ee53804bd7a98f1c620579899e0fdb = L.rectangle(
+                [[2.0679999999999996, -73.023], [2.077, -73.01400000000001]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.35, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ba331ece398656f1b977a3d5e989e24f);
+        
+    
+        var popup_e54c49b7515f6eafdfc00899ea1548db = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2ca55e4e89f978a3a9507b582f102940 = $(`<div id="html_2ca55e4e89f978a3a9507b582f102940" style="width: 100.0%; height: 100.0%;">#11 · celda 5270<br>Riesgo: 0.96 (alta)<br>Alertas históricas: 4<br>Pérdida último año: 20.1 ha</div>`)[0];
+                popup_e54c49b7515f6eafdfc00899ea1548db.setContent(html_2ca55e4e89f978a3a9507b582f102940);
+            
+        
+
+        rectangle_76ee53804bd7a98f1c620579899e0fdb.bindPopup(popup_e54c49b7515f6eafdfc00899ea1548db)
+        ;
+
+        
+    
+    
+            var rectangle_2a38ede80a7843aa8d5465d4edbce327 = L.rectangle(
+                [[1.8699999999999999, -73.455], [1.8789999999999998, -73.44600000000001]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.35, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ba331ece398656f1b977a3d5e989e24f);
+        
+    
+        var popup_4ba9322a74c10d4cb835d31bd0d36ccb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_eda18cc8a7b616c806dae24e96481602 = $(`<div id="html_eda18cc8a7b616c806dae24e96481602" style="width: 100.0%; height: 100.0%;">#12 · celda 7664<br>Riesgo: 0.96 (alta)<br>Alertas históricas: 2<br>Pérdida último año: 19.7 ha</div>`)[0];
+                popup_4ba9322a74c10d4cb835d31bd0d36ccb.setContent(html_eda18cc8a7b616c806dae24e96481602);
+            
+        
+
+        rectangle_2a38ede80a7843aa8d5465d4edbce327.bindPopup(popup_4ba9322a74c10d4cb835d31bd0d36ccb)
+        ;
+
+        
+    
+    
+            var rectangle_5290508774f4cc26020252f355931370 = L.rectangle(
+                [[2.266, -73.23899999999999], [2.2750000000000004, -73.23]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.35, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ba331ece398656f1b977a3d5e989e24f);
+        
+    
+        var popup_62d62e31a947f34de989a0af758dd2a5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9585982f31e92d042692462de1ffff18 = $(`<div id="html_9585982f31e92d042692462de1ffff18" style="width: 100.0%; height: 100.0%;">#13 · celda 2804<br>Riesgo: 0.96 (alta)<br>Alertas históricas: 3<br>Pérdida último año: 23.9 ha</div>`)[0];
+                popup_62d62e31a947f34de989a0af758dd2a5.setContent(html_9585982f31e92d042692462de1ffff18);
+            
+        
+
+        rectangle_5290508774f4cc26020252f355931370.bindPopup(popup_62d62e31a947f34de989a0af758dd2a5)
+        ;
+
+        
+    
+    
+            var rectangle_6c3b3c6a688c876977d6157b656a704f = L.rectangle(
+                [[2.0949999999999998, -73.032], [2.104, -73.02300000000001]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.35, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ba331ece398656f1b977a3d5e989e24f);
+        
+    
+        var popup_9eda85e32cec40cc56da1bb18983fdeb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1c6ab794e578139f219f6ba225753adf = $(`<div id="html_1c6ab794e578139f219f6ba225753adf" style="width: 100.0%; height: 100.0%;">#14 · celda 4936<br>Riesgo: 0.96 (alta)<br>Alertas históricas: 7<br>Pérdida último año: 7.5 ha</div>`)[0];
+                popup_9eda85e32cec40cc56da1bb18983fdeb.setContent(html_1c6ab794e578139f219f6ba225753adf);
+            
+        
+
+        rectangle_6c3b3c6a688c876977d6157b656a704f.bindPopup(popup_9eda85e32cec40cc56da1bb18983fdeb)
+        ;
+
+        
+    
+    
+            var rectangle_444b5e191e690458e5fc16eb23083e95 = L.rectangle(
+                [[2.0589999999999997, -73.428], [2.068, -73.41900000000001]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.35, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ba331ece398656f1b977a3d5e989e24f);
+        
+    
+        var popup_f0dd72220e45a5d269d109473ee90bfc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6f6376eb04af8d3200fd9a9b20a8bd97 = $(`<div id="html_6f6376eb04af8d3200fd9a9b20a8bd97" style="width: 100.0%; height: 100.0%;">#15 · celda 5336<br>Riesgo: 0.96 (alta)<br>Alertas históricas: 3<br>Pérdida último año: 31.5 ha</div>`)[0];
+                popup_f0dd72220e45a5d269d109473ee90bfc.setContent(html_6f6376eb04af8d3200fd9a9b20a8bd97);
+            
+        
+
+        rectangle_444b5e191e690458e5fc16eb23083e95.bindPopup(popup_f0dd72220e45a5d269d109473ee90bfc)
+        ;
+
+        
+    
+    
+            var rectangle_cfb470afb4a6f8b27d37046230cedc1f = L.rectangle(
+                [[2.3289999999999997, -73.19399999999999], [2.338, -73.185]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.35, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ba331ece398656f1b977a3d5e989e24f);
+        
+    
+        var popup_108fac49f6846b8772c2acce767ad42f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_be5773ed8e39300f4595b985a654781c = $(`<div id="html_be5773ed8e39300f4595b985a654781c" style="width: 100.0%; height: 100.0%;">#16 · celda 2032<br>Riesgo: 0.96 (alta)<br>Alertas históricas: 4<br>Pérdida último año: 18.0 ha</div>`)[0];
+                popup_108fac49f6846b8772c2acce767ad42f.setContent(html_be5773ed8e39300f4595b985a654781c);
+            
+        
+
+        rectangle_cfb470afb4a6f8b27d37046230cedc1f.bindPopup(popup_108fac49f6846b8772c2acce767ad42f)
+        ;
+
+        
+    
+    
+            var rectangle_e4bd5bcf42349e44499c1387009948b4 = L.rectangle(
+                [[2.0679999999999996, -73.473], [2.077, -73.46400000000001]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.35, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ba331ece398656f1b977a3d5e989e24f);
+        
+    
+        var popup_daf72ba433ab758a02cbc15db91fb3de = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c795fafc92a00705fcf47eb614ec6d17 = $(`<div id="html_c795fafc92a00705fcf47eb614ec6d17" style="width: 100.0%; height: 100.0%;">#17 · celda 5220<br>Riesgo: 0.96 (alta)<br>Alertas históricas: 4<br>Pérdida último año: 24.8 ha</div>`)[0];
+                popup_daf72ba433ab758a02cbc15db91fb3de.setContent(html_c795fafc92a00705fcf47eb614ec6d17);
+            
+        
+
+        rectangle_e4bd5bcf42349e44499c1387009948b4.bindPopup(popup_daf72ba433ab758a02cbc15db91fb3de)
+        ;
+
+        
+    
+    
+            var rectangle_018c9b50cb44a1d94416eb2717156476 = L.rectangle(
+                [[2.077, -73.5], [2.0860000000000003, -73.49100000000001]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.35, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ba331ece398656f1b977a3d5e989e24f);
+        
+    
+        var popup_3858514e82f50f903c75d0e09859c0ba = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5295831f64ace121b97b09987a803f45 = $(`<div id="html_5295831f64ace121b97b09987a803f45" style="width: 100.0%; height: 100.0%;">#18 · celda 5106<br>Riesgo: 0.96 (alta)<br>Alertas históricas: 4<br>Pérdida último año: 13.5 ha</div>`)[0];
+                popup_3858514e82f50f903c75d0e09859c0ba.setContent(html_5295831f64ace121b97b09987a803f45);
+            
+        
+
+        rectangle_018c9b50cb44a1d94416eb2717156476.bindPopup(popup_3858514e82f50f903c75d0e09859c0ba)
+        ;
+
+        
+    
+    
+            var rectangle_b8c9d1f530a68316ddb645584e2b2ad6 = L.rectangle(
+                [[1.762, -72.53699999999999], [1.771, -72.528]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.35, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ba331ece398656f1b977a3d5e989e24f);
+        
+    
+        var popup_067b23143dd9a2ac4aad40f928b4ce67 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a604bb09db2ab1df4d866dd7328e0141 = $(`<div id="html_a604bb09db2ab1df4d866dd7328e0141" style="width: 100.0%; height: 100.0%;">#19 · celda 9098<br>Riesgo: 0.96 (alta)<br>Alertas históricas: 2<br>Pérdida último año: 8.8 ha</div>`)[0];
+                popup_067b23143dd9a2ac4aad40f928b4ce67.setContent(html_a604bb09db2ab1df4d866dd7328e0141);
+            
+        
+
+        rectangle_b8c9d1f530a68316ddb645584e2b2ad6.bindPopup(popup_067b23143dd9a2ac4aad40f928b4ce67)
+        ;
+
+        
+    
+    
+            var rectangle_47a911ee6c6dee04f45854611148e8eb = L.rectangle(
+                [[2.0589999999999997, -73.446], [2.068, -73.43700000000001]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.35, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_ba331ece398656f1b977a3d5e989e24f);
+        
+    
+        var popup_fa21ea850346eaab73e188f7ff8a2935 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1f40dab9d85090f9e4e00f1bee89836c = $(`<div id="html_1f40dab9d85090f9e4e00f1bee89836c" style="width: 100.0%; height: 100.0%;">#20 · celda 5334<br>Riesgo: 0.96 (alta)<br>Alertas históricas: 6<br>Pérdida último año: 21.9 ha</div>`)[0];
+                popup_fa21ea850346eaab73e188f7ff8a2935.setContent(html_1f40dab9d85090f9e4e00f1bee89836c);
+            
+        
+
+        rectangle_47a911ee6c6dee04f45854611148e8eb.bindPopup(popup_fa21ea850346eaab73e188f7ff8a2935)
+        ;
+
+        
+    
+    
+            var layer_control_b7c95b9b65f1fb7d84debc01eecec5b1_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_f18da3d7cc24c6808789367d5dc4a9aa,
+                    "Sat\u00e9lite" : tile_layer_54da60b30287bf747d1e6fe9277c4d77,
+                },
+                overlays :  {
+                },
+            };
+            let layer_control_b7c95b9b65f1fb7d84debc01eecec5b1 = L.control.layers(
+                layer_control_b7c95b9b65f1fb7d84debc01eecec5b1_layers.base_layers,
+                layer_control_b7c95b9b65f1fb7d84debc01eecec5b1_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_ba331ece398656f1b977a3d5e989e24f);
+
+        
+</script>
+</html>

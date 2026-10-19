@@ -1,0 +1,11 @@
+numpy
+pandas
+rasterio
+geopandas
+scikit-learn
+joblib
+folium
+matplotlib
+jupyterlab
+ipykernel
+requests

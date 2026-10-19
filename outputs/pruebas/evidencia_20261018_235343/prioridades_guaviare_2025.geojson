@@ -1,0 +1,785 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -72.609,
+              1.69
+            ],
+            [
+              -72.60000000000001,
+              1.69
+            ],
+            [
+              -72.60000000000001,
+              1.6989999999999998
+            ],
+            [
+              -72.609,
+              1.6989999999999998
+            ],
+            [
+              -72.609,
+              1.69
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "celda_id": 9978,
+        "ranking": 1,
+        "riesgo": 0.9645,
+        "nivel": "alta",
+        "n_alertas_hist": 2,
+        "ultima_alerta": 2024,
+        "perdida_ha_ultimo": 33.13
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.491,
+              1.9869999999999999
+            ],
+            [
+              -73.48200000000001,
+              1.9869999999999999
+            ],
+            [
+              -73.48200000000001,
+              1.9959999999999998
+            ],
+            [
+              -73.491,
+              1.9959999999999998
+            ],
+            [
+              -73.491,
+              1.9869999999999999
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "celda_id": 6217,
+        "ranking": 2,
+        "riesgo": 0.9634,
+        "nivel": "alta",
+        "n_alertas_hist": 4,
+        "ultima_alerta": 2024,
+        "perdida_ha_ultimo": 20.82
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.22999999999999,
+              2.2569999999999997
+            ],
+            [
+              -73.221,
+              2.2569999999999997
+            ],
+            [
+              -73.221,
+              2.266
+            ],
+            [
+              -73.22999999999999,
+              2.266
+            ],
+            [
+              -73.22999999999999,
+              2.2569999999999997
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "celda_id": 2916,
+        "ranking": 3,
+        "riesgo": 0.9629,
+        "nivel": "alta",
+        "n_alertas_hist": 4,
+        "ultima_alerta": 2024,
+        "perdida_ha_ultimo": 23.69
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.22099999999999,
+              2.239
+            ],
+            [
+              -73.212,
+              2.239
+            ],
+            [
+              -73.212,
+              2.248
+            ],
+            [
+              -73.22099999999999,
+              2.248
+            ],
+            [
+              -73.22099999999999,
+              2.239
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "celda_id": 3139,
+        "ranking": 4,
+        "riesgo": 0.9624,
+        "nivel": "alta",
+        "n_alertas_hist": 3,
+        "ultima_alerta": 2024,
+        "perdida_ha_ultimo": 13.55
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -72.54599999999999,
+              1.762
+            ],
+            [
+              -72.537,
+              1.762
+            ],
+            [
+              -72.537,
+              1.771
+            ],
+            [
+              -72.54599999999999,
+              1.771
+            ],
+            [
+              -72.54599999999999,
+              1.762
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "celda_id": 9097,
+        "ranking": 5,
+        "riesgo": 0.9615,
+        "nivel": "alta",
+        "n_alertas_hist": 2,
+        "ultima_alerta": 2024,
+        "perdida_ha_ultimo": 21.21
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.22099999999999,
+              2.2569999999999997
+            ],
+            [
+              -73.212,
+              2.2569999999999997
+            ],
+            [
+              -73.212,
+              2.266
+            ],
+            [
+              -73.22099999999999,
+              2.266
+            ],
+            [
+              -73.22099999999999,
+              2.2569999999999997
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "celda_id": 2917,
+        "ranking": 6,
+        "riesgo": 0.9605,
+        "nivel": "alta",
+        "n_alertas_hist": 4,
+        "ultima_alerta": 2024,
+        "perdida_ha_ultimo": 23.69
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -72.591,
+              1.7710000000000001
+            ],
+            [
+              -72.58200000000001,
+              1.7710000000000001
+            ],
+            [
+              -72.58200000000001,
+              1.78
+            ],
+            [
+              -72.591,
+              1.78
+            ],
+            [
+              -72.591,
+              1.7710000000000001
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "celda_id": 8981,
+        "ranking": 7,
+        "riesgo": 0.9605,
+        "nivel": "alta",
+        "n_alertas_hist": 3,
+        "ultima_alerta": 2024,
+        "perdida_ha_ultimo": 8.36
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.464,
+              1.8699999999999999
+            ],
+            [
+              -73.45500000000001,
+              1.8699999999999999
+            ],
+            [
+              -73.45500000000001,
+              1.8789999999999998
+            ],
+            [
+              -73.464,
+              1.8789999999999998
+            ],
+            [
+              -73.464,
+              1.8699999999999999
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "celda_id": 7663,
+        "ranking": 8,
+        "riesgo": 0.9603,
+        "nivel": "alta",
+        "n_alertas_hist": 1,
+        "ultima_alerta": 2024,
+        "perdida_ha_ultimo": 27.63
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -72.609,
+              1.699
+            ],
+            [
+              -72.60000000000001,
+              1.699
+            ],
+            [
+              -72.60000000000001,
+              1.708
+            ],
+            [
+              -72.609,
+              1.708
+            ],
+            [
+              -72.609,
+              1.699
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "celda_id": 9867,
+        "ranking": 9,
+        "riesgo": 0.96,
+        "nivel": "alta",
+        "n_alertas_hist": 3,
+        "ultima_alerta": 2024,
+        "perdida_ha_ultimo": 6.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.464,
+              1.861
+            ],
+            [
+              -73.45500000000001,
+              1.861
+            ],
+            [
+              -73.45500000000001,
+              1.8699999999999999
+            ],
+            [
+              -73.464,
+              1.8699999999999999
+            ],
+            [
+              -73.464,
+              1.861
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "celda_id": 7774,
+        "ranking": 10,
+        "riesgo": 0.9597,
+        "nivel": "alta",
+        "n_alertas_hist": 2,
+        "ultima_alerta": 2024,
+        "perdida_ha_ultimo": 15.79
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.023,
+              2.0679999999999996
+            ],
+            [
+              -73.01400000000001,
+              2.0679999999999996
+            ],
+            [
+              -73.01400000000001,
+              2.077
+            ],
+            [
+              -73.023,
+              2.077
+            ],
+            [
+              -73.023,
+              2.0679999999999996
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "celda_id": 5270,
+        "ranking": 11,
+        "riesgo": 0.9594,
+        "nivel": "alta",
+        "n_alertas_hist": 4,
+        "ultima_alerta": 2024,
+        "perdida_ha_ultimo": 20.12
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.455,
+              1.8699999999999999
+            ],
+            [
+              -73.44600000000001,
+              1.8699999999999999
+            ],
+            [
+              -73.44600000000001,
+              1.8789999999999998
+            ],
+            [
+              -73.455,
+              1.8789999999999998
+            ],
+            [
+              -73.455,
+              1.8699999999999999
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "celda_id": 7664,
+        "ranking": 12,
+        "riesgo": 0.9594,
+        "nivel": "alta",
+        "n_alertas_hist": 2,
+        "ultima_alerta": 2024,
+        "perdida_ha_ultimo": 19.74
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.23899999999999,
+              2.266
+            ],
+            [
+              -73.23,
+              2.266
+            ],
+            [
+              -73.23,
+              2.2750000000000004
+            ],
+            [
+              -73.23899999999999,
+              2.2750000000000004
+            ],
+            [
+              -73.23899999999999,
+              2.266
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "celda_id": 2804,
+        "ranking": 13,
+        "riesgo": 0.9592,
+        "nivel": "alta",
+        "n_alertas_hist": 3,
+        "ultima_alerta": 2024,
+        "perdida_ha_ultimo": 23.92
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.032,
+              2.0949999999999998
+            ],
+            [
+              -73.02300000000001,
+              2.0949999999999998
+            ],
+            [
+              -73.02300000000001,
+              2.104
+            ],
+            [
+              -73.032,
+              2.104
+            ],
+            [
+              -73.032,
+              2.0949999999999998
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "celda_id": 4936,
+        "ranking": 14,
+        "riesgo": 0.9591,
+        "nivel": "alta",
+        "n_alertas_hist": 7,
+        "ultima_alerta": 2024,
+        "perdida_ha_ultimo": 7.51
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.428,
+              2.0589999999999997
+            ],
+            [
+              -73.41900000000001,
+              2.0589999999999997
+            ],
+            [
+              -73.41900000000001,
+              2.068
+            ],
+            [
+              -73.428,
+              2.068
+            ],
+            [
+              -73.428,
+              2.0589999999999997
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "celda_id": 5336,
+        "ranking": 15,
+        "riesgo": 0.9579,
+        "nivel": "alta",
+        "n_alertas_hist": 3,
+        "ultima_alerta": 2024,
+        "perdida_ha_ultimo": 31.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.19399999999999,
+              2.3289999999999997
+            ],
+            [
+              -73.185,
+              2.3289999999999997
+            ],
+            [
+              -73.185,
+              2.338
+            ],
+            [
+              -73.19399999999999,
+              2.338
+            ],
+            [
+              -73.19399999999999,
+              2.3289999999999997
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "celda_id": 2032,
+        "ranking": 16,
+        "riesgo": 0.9577,
+        "nivel": "alta",
+        "n_alertas_hist": 4,
+        "ultima_alerta": 2024,
+        "perdida_ha_ultimo": 18.04
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.473,
+              2.0679999999999996
+            ],
+            [
+              -73.46400000000001,
+              2.0679999999999996
+            ],
+            [
+              -73.46400000000001,
+              2.077
+            ],
+            [
+              -73.473,
+              2.077
+            ],
+            [
+              -73.473,
+              2.0679999999999996
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "celda_id": 5220,
+        "ranking": 17,
+        "riesgo": 0.9576,
+        "nivel": "alta",
+        "n_alertas_hist": 4,
+        "ultima_alerta": 2024,
+        "perdida_ha_ultimo": 24.77
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.5,
+              2.077
+            ],
+            [
+              -73.49100000000001,
+              2.077
+            ],
+            [
+              -73.49100000000001,
+              2.0860000000000003
+            ],
+            [
+              -73.5,
+              2.0860000000000003
+            ],
+            [
+              -73.5,
+              2.077
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "celda_id": 5106,
+        "ranking": 18,
+        "riesgo": 0.9573,
+        "nivel": "alta",
+        "n_alertas_hist": 4,
+        "ultima_alerta": 2024,
+        "perdida_ha_ultimo": 13.55
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -72.53699999999999,
+              1.762
+            ],
+            [
+              -72.528,
+              1.762
+            ],
+            [
+              -72.528,
+              1.771
+            ],
+            [
+              -72.53699999999999,
+              1.771
+            ],
+            [
+              -72.53699999999999,
+              1.762
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "celda_id": 9098,
+        "ranking": 19,
+        "riesgo": 0.9572,
+        "nivel": "alta",
+        "n_alertas_hist": 2,
+        "ultima_alerta": 2024,
+        "perdida_ha_ultimo": 8.82
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.446,
+              2.0589999999999997
+            ],
+            [
+              -73.43700000000001,
+              2.0589999999999997
+            ],
+            [
+              -73.43700000000001,
+              2.068
+            ],
+            [
+              -73.446,
+              2.068
+            ],
+            [
+              -73.446,
+              2.0589999999999997
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "celda_id": 5334,
+        "ranking": 20,
+        "riesgo": 0.9572,
+        "nivel": "alta",
+        "n_alertas_hist": 6,
+        "ultima_alerta": 2024,
+        "perdida_ha_ultimo": 21.91
+      }
+    }
+  ]
+}
