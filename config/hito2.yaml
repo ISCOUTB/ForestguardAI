@@ -1,0 +1,86 @@
+# =====================================================================================
+# ForestGuard-Agent · Reglas del protocolo (Hito 2)
+# Se fijan ANTES de entrenar y NO se cambian después de ver resultados de prueba.
+# Si algo tiene que cambiar, se agrega una nota en `cambios:` con fecha y motivo,
+# y el cambio queda visible en el historial de git.
+# =====================================================================================
+version_reglas: 1
+fecha_fijacion: "2026-11-__"          # completar con la fecha del commit
+
+datos:
+  tesela: "10N_080W"
+  version_entrenamiento: "GFC-2024-v1.12"   # pérdida 2001-2024; entrena y valida
+  version_etiquetas_2025: "GFC-2025-v1.13"  # SOLO etiqueta 2025 (lossyear == 25); nunca entrena
+  verificar_coincidencia_2001_2024: true    # v1.12 y v1.13 deben coincidir en cada zona
+
+celdas:
+  celda_px: 36                 # ~1 km por lado
+  bosque_min_pct: 30           # píxel con treecover2000 >= 30 % y datamask == 1
+  bosque_restante_min_pct: 1   # solo celdas con bosque que todavía se pueda perder
+  alerta_ha: 2.0               # alerta real = pérdida >= 2 ha en el año predicho
+
+# Completar con el resultado de scripts/tamizaje_zonas.py (bbox = lon_min, lat_min, lon_max, lat_max)
+zonas:
+  entrenamiento:
+    guaviare: [-73.5, 1.5, -72.5, 2.5]
+    macarena: [-74.5, 2.0, -73.5, 3.0]
+  retenidas:                   # no entran ni a entrenamiento ni a validación
+    chaira:   [-75.0, 0.5, -74.0, 1.5]
+    putumayo: [-77.0, 0.0, -76.0, 1.0]
+
+division_temporal:             # por año PREDICHO (anio_pred); manda sobre la columna `conjunto` del panel
+  entrenamiento: [2004, 2022]  # zonas de entrenamiento
+  validacion:    [2023, 2024]  # zonas de entrenamiento; aquí se fija el umbral
+  prueba:        [2025]        # zonas retenidas; features hasta 2024, etiquetas de v1.13
+
+linea_base:
+  modelo: "RandomForestClassifier"   # igual que src/forestguard/model.py:entrenar()
+  n_estimators: 200
+  max_depth: 12
+  min_samples_leaf: 20
+  class_weight: "balanced_subsample"
+  features:
+    - pct_bosque_2000
+    - pct_bosque_restante
+    - perdida_acum_pct
+    - perdida_ha_ultimo
+    - perdida_ha_ult3
+    - perdida_vecinas_ha_ultimo
+    - perdida_vecinas_ha_ult3
+  semillas: [42, 43, 44, 45, 46]     # 5 repeticiones; se reporta media ± desviación (ddof=1)
+
+umbral_riesgo:
+  regla: >-
+    En validación (2023-2024, zonas de entrenamiento juntas), el umbral con MAYOR recall
+    que deje falsos positivos FP/(FP+VN) <= 0.15. Si hay empate, el umbral más alto.
+    Se fija una vez por semilla y se aplica igual en todas las zonas retenidas.
+  fpr_max_validacion: 0.15
+
+metricas:                      # se miden en cada zona retenida, prediciendo 2025
+  pr_auc:
+    calculo: "sklearn.metrics.average_precision_score(y, riesgo)"
+  precision_top_k:
+    k: 20                      # por zona: alertas reales entre las 20 celdas de mayor riesgo / 20
+  recall_con_fpr:
+    recall: "VP / (VP + FN)"
+    fpr: "FP / (FP + VN)"
+    umbral: "el de umbral_riesgo (fijado en validación)"
+  tiempo_respuesta_s:
+    calculo: "segundos desde un recuadro con teselas en disco hasta el reporte"
+  informativas: [accuracy, falsas_entre_alertas]   # se reportan, no deciden nada
+
+referencias:
+  azar:
+    pr_auc: "prevalencia de alertas en la zona"
+    top_k: "prevalencia de alertas en la zona (valor esperado)"
+  persistencia:
+    puntaje: "perdida_ha_ultimo (desempate: perdida_ha_ult3)"
+    alerta_si: "perdida_ha_ultimo >= alerta_ha"
+
+umbrales_exito_ruta_completa:  # del Hito 1; se evalúan al final contra esta línea base
+  pr_auc: "media en retenidas >= 1.10 x línea base, y no menor que la línea base en ninguna zona"
+  precision_top20: "media en retenidas >= 0.75, y mayor que persistencia"
+  recall_con_fpr: "recall >= 0.75 con FPR <= 0.15"
+  tiempo_respuesta: "<= 300 s en un recuadro de 1°x1°"
+
+cambios: []                    # ej.: - {fecha: "2026-11-20", que: "...", por_que: "..."}

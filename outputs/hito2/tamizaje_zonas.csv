@@ -1,0 +1,7 @@
+zona,lon_min,lat_min,lon_max,lat_max,alertas_2022,prevalencia_2022_%,alertas_2023,prevalencia_2023_%,alertas_2024,prevalencia_2024_%,celdas_bosque_2024,cumple,rol_candidato,rol_final
+guaviare,-73.5,1.5,-72.5,2.5,1178,9.56,656,5.33,926,7.52,12316,True,entrenamiento,entrenamiento
+macarena,-74.5,2.0,-73.5,3.0,2276,18.49,509,4.13,1933,15.7,12311,True,entrenamiento,entrenamiento
+chaira,-75.0,0.5,-74.0,1.5,2224,18.07,984,8.0,2159,17.55,12290,True,retenida,retenida
+putumayo,-77.0,0.0,-76.0,1.0,3713,30.14,1427,11.58,1495,12.13,12321,True,retenida,retenida
+bajo_cauca,-75.5,7.0,-74.5,8.0,1287,10.46,1390,11.3,904,7.35,12298,True,retenida,descartada
+catatumbo,-73.5,8.0,-72.5,9.0,1446,11.76,1077,8.76,857,6.97,12300,True,retenida,descartada
