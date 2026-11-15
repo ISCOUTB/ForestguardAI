@@ -1,0 +1,52 @@
+====================================================================================================
+LÍNEA BASE MULTIZONA · ForestGuard-Agent · ejecución 20261115_171234
+====================================================================================================
+Entorno: Python 3.13.12 · numpy 2.5.4 · pandas 3.0.6 · scikit-learn 1.9.1 · rasterio 1.5.2 · Windows-11-10.0.26300-SP0
+Commit: dd8469d | config/hito2.yaml sha256 a743a99a119b | reglas fijadas: 2026-11-__
+Entrenamiento: ['guaviare', 'macarena'] | retenidas: ['chaira', 'putumayo'] | semillas: [42, 43, 44, 45, 46]
+Años predichos -> entrenamiento [2004, 2022], validación [2023, 2024], prueba [2025]
+Alerta real: pérdida >= 2.0 ha en la celda | umbral: mayor recall con FPR <= 15% en validación
+Modelo de prueba: el mismo entrenado hasta el año de corte de entrenamiento (no se reentrena con validación).
+
+----------------------------------------------------------------------------------------------------
+1) DATOS
+----------------------------------------------------------------------------------------------------
+  guaviare     coincidencia v1.12 = v1.13 en 2001-2024: 100.0%
+  macarena     coincidencia v1.12 = v1.13 en 2001-2024: 100.0%
+  chaira       coincidencia v1.12 = v1.13 en 2001-2024: 100.0%
+    prueba 2025: 12,290 celdas, 1,887 alertas reales (15.4%)
+  putumayo     coincidencia v1.12 = v1.13 en 2001-2024: 100.0%
+    prueba 2025: 12,321 celdas, 1,666 alertas reales (13.5%)
+  entrenamiento: 468,030 filas, 57,485 alertas (12.3%)
+  validación:    49,258 filas, 4,024 alertas (8.2%)
+
+----------------------------------------------------------------------------------------------------
+2) LÍNEA BASE (Random Forest)
+----------------------------------------------------------------------------------------------------
+  semilla 42: umbral 0.6583 (validación: recall 58.6%, FPR 15.0%) | chaira: PR-AUC 0.553, top-20 75.0%, recall 70.6%, FPR 16.4% | putumayo: PR-AUC 0.320, top-20 60.0%, recall 81.7%, FPR 42.1% | 20.0 s
+  semilla 43: umbral 0.6593 (validación: recall 59.2%, FPR 15.0%) | chaira: PR-AUC 0.554, top-20 70.0%, recall 70.5%, FPR 16.4% | putumayo: PR-AUC 0.319, top-20 65.0%, recall 81.4%, FPR 42.5% | 19.8 s
+  semilla 44: umbral 0.6584 (validación: recall 58.5%, FPR 15.0%) | chaira: PR-AUC 0.553, top-20 75.0%, recall 70.0%, FPR 16.3% | putumayo: PR-AUC 0.319, top-20 70.0%, recall 81.7%, FPR 42.3% | 20.1 s
+  semilla 45: umbral 0.6585 (validación: recall 58.7%, FPR 15.0%) | chaira: PR-AUC 0.556, top-20 80.0%, recall 70.6%, FPR 16.5% | putumayo: PR-AUC 0.319, top-20 55.0%, recall 81.7%, FPR 42.4% | 20.9 s
+  semilla 46: umbral 0.6582 (validación: recall 58.8%, FPR 15.0%) | chaira: PR-AUC 0.554, top-20 75.0%, recall 70.1%, FPR 16.5% | putumayo: PR-AUC 0.319, top-20 65.0%, recall 81.6%, FPR 42.3% | 21.2 s
+
+====================================================================================================
+TABLA DE RESULTADOS · predicción 2025 en zonas retenidas · media ± desv. (5 semillas)
+====================================================================================================
+| Zona | Modelo | PR-AUC | Top-20 | Recall | FPR | Accuracy* | Falsas entre alertas* |
+|---|---|---|---|---|---|---|---|
+| chaira | azar | 0.154 | 15.4% | n/d | n/d | n/d | n/d |
+| chaira | persistencia | 0.465 | 75.0% | 51.9% | 11.3% | 83.1% | 54.5% |
+| chaira | linea_base_rf | 0.554 ± 0.001 | 75.0% ± 3.5 | 70.4% ± 0.3 | 16.4% ± 0.1 | 81.6% ± 0.1 | 56.3% ± 0.2 |
+| putumayo | azar | 0.135 | 13.5% | n/d | n/d | n/d | n/d |
+| putumayo | persistencia | 0.298 | 65.0% | 30.4% | 9.3% | 82.6% | 66.2% |
+| putumayo | linea_base_rf | 0.319 ± 0.000 | 63.0% ± 5.7 | 81.6% ± 0.1 | 42.3% ± 0.1 | 60.9% ± 0.1 | 76.8% ± 0.1 |
+| media_retenidas | azar | 0.144 | 14.4% | n/d | n/d | n/d | n/d |
+| media_retenidas | persistencia | 0.382 | 70.0% | 41.1% | 10.3% | 82.8% | 60.3% |
+| media_retenidas | linea_base_rf | 0.437 ± 0.001 | 69.0% ± 2.2 | 76.0% ± 0.2 | 29.4% ± 0.1 | 71.2% ± 0.1 | 66.5% ± 0.1 |
+* informativas: no deciden nada.
+Azar: PR-AUC y top-k = proporción de alertas de la zona (valor esperado); no tiene recall/FPR.
+
+Corridas: C:\Users\Acer\Desktop\ForestguardAI\outputs\hito2\linea_base_corridas.csv
+Resumen:  C:\Users\Acer\Desktop\ForestguardAI\outputs\hito2\linea_base_resumen.csv
+Duración total: 1.8 min
+
