@@ -83,4 +83,7 @@ umbrales_exito_ruta_completa:
   recall_con_fpr: "recall >= 0.75 con FPR <= 0.15"
   tiempo_respuesta: "<= 300 s en un recuadro de 1°x1°"
 
-cambios: - {fecha: "2026-11-15 (documentado el 16 de noviembre, se puede corroborar que todos los cambios fueron en la fecha del 15 de noviembre", que: "El modelo que predice 2025 es el entrenado hasta 2022, sin reentrenar con 2023-2024", por_que: "Aclaración: el YAML no lo decía; así se ejecutó la corrida 281f839 (ver registro_linea_base.txt)"}             
+cambios:
+  - fecha: "2026-11-16"
+    que: "El modelo que predice 2025 es el entrenado hasta 2022, sin reentrenar con 2023-2024"
+    por_que: "Aclaración de cómo se ejecutó la corrida 281f839 del 2026-11-15 (ver registro_linea_base.txt); el YAML no lo decía"         
