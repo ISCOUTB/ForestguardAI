@@ -68,6 +68,18 @@ La primera corrida construye la tabla de celdas (`data/processed/panel_guaviare.
 siguientes la reutilizan. Al terminar, la consola muestra los archivos generados y el tiempo de
 ejecución.
 
+
+## Hito 2 · Línea base multizona
+
+Reglas fijadas antes de entrenar en `config/hito2.yaml` (commit `dd8469d`, etiqueta `hito2-reglas`).
+
+1. Elegir zonas (solo usa Hansen v1.12): `python scripts/tamizaje_zonas.py`
+2. Línea base en zonas retenidas, prediciendo 2025 con v1.13: `python scripts/linea_base_multizona.py`
+   (`--rapido` para una prueba con 1 semilla)
+
+Resultados en `outputs/hito2/`: `registro_linea_base.txt`, `linea_base_corridas.csv`, `linea_base_resumen.csv`.
+
+
 ### Ciclo del agente
 
 Implementado en `src/forestguard/agent.py`, método `ForestGuardAgent.ejecutar()`:
