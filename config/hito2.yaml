@@ -77,10 +77,10 @@ referencias:
     puntaje: "perdida_ha_ultimo (desempate: perdida_ha_ult3)"
     alerta_si: "perdida_ha_ultimo >= alerta_ha"
 
-umbrales_exito_ruta_completa:  # del Hito 1; se evalúan al final contra esta línea base
+umbrales_exito_ruta_completa: 
   pr_auc: "media en retenidas >= 1.10 x línea base, y no menor que la línea base en ninguna zona"
   precision_top20: "media en retenidas >= 0.75, y mayor que persistencia"
   recall_con_fpr: "recall >= 0.75 con FPR <= 0.15"
   tiempo_respuesta: "<= 300 s en un recuadro de 1°x1°"
 
-cambios: []                    # ej.: - {fecha: "2026-11-20", que: "...", por_que: "..."}
+cambios: - {fecha: "2026-11-15 (documentado el 16 de noviembre, se puede corroborar que todos los cambios fueron en la fecha del 15 de noviembre", que: "El modelo que predice 2025 es el entrenado hasta 2022, sin reentrenar con 2023-2024", por_que: "Aclaración: el YAML no lo decía; así se ejecutó la corrida 281f839 (ver registro_linea_base.txt)"}             
