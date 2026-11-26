@@ -44,3 +44,10 @@ Thumbs.db
 desktop.ini
 .vscode/
 .idea/
+<<<<<<< HEAD
+=======
+
+# Evidencia del experimento CRISP-ML(Q)
+!outputs/ruta_espacial/
+!outputs/ruta_espacial/*.csv
+>>>>>>> 7d16f29 (chore: Added)

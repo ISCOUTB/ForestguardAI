@@ -11,6 +11,29 @@ Proyecto del curso de Inteligencia Artificial — Universidad Tecnológica de Bo
 
 ---
 
+<<<<<<< HEAD
+=======
+## Ruta multizona del modelo · CRISP-ML(Q)
+
+Los notebooks 04–06 continúan el piloto 01–03 con las reglas de los hitos 1 y 2. Se pueden abrir con sus salidas guardadas. Para repetir el experimento desde la raíz, usa un entorno dedicado con Python 3.12 y activa el entorno antes de ejecutar los comandos.
+
+```bash
+python -m venv .venv-ruta
+# Linux / macOS
+source .venv-ruta/bin/activate
+# En PowerShell usa .venv-ruta\Scripts\Activate.ps1
+python -m pip install -r requirements-ruta-espacial.txt
+jupyter execute --inplace notebooks/04_problema_y_linea_base.ipynb
+jupyter execute --inplace notebooks/05_preparacion_espacial.ipynb
+jupyter execute --inplace notebooks/06_boosting_y_evaluacion.ipynb
+```
+
+1. **Problema y línea base.** El notebook 04 reconstruye las métricas de la corrida RF publicada en el Hito 2. Para reentrenar también ese RF con su entorno original, sigue la sección multizona de este README y ejecuta `python scripts/linea_base_multizona.py`.
+2. **Preparación.** El 05 descarga una vez las capas v1.12 que falten, verifica cuadrículas y construye paneles bajo `data/processed/ruta_espacial/`. Reserva al menos 2 GB libres y acceso a internet la primera vez.
+3. **Modelado y evaluación.** El 06 ajusta cinco modelos, fija el umbral en validación y comprueba las etiquetas de las dos zonas retenidas con v1.13. Escribe corridas, métricas y ejemplos de errores en `outputs/ruta_espacial/`. La desviación estándar se calcula entre semillas después de promediar las zonas.
+4. **Despliegue y monitoreo.** La aplicación sigue usando el RF. La promoción del candidato depende de las metas declaradas y de medir con la interfaz el tiempo desde el recuadro hasta el reporte.
+
+>>>>>>> 7d16f29 (chore: Added)
 ## 1. Requisitos
 
 - Python 3.11 o superior (probado con Python 3.13 y 3.14).
