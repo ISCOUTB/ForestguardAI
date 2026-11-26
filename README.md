@@ -11,8 +11,6 @@ Proyecto del curso de Inteligencia Artificial — Universidad Tecnológica de Bo
 
 ---
 
-<<<<<<< HEAD
-=======
 ## Ruta multizona del modelo · CRISP-ML(Q)
 
 Los notebooks 04–06 continúan el piloto 01–03 con las reglas de los hitos 1 y 2. Se pueden abrir con sus salidas guardadas. Para repetir el experimento desde la raíz, usa un entorno dedicado con Python 3.12 y activa el entorno antes de ejecutar los comandos.
@@ -33,7 +31,6 @@ jupyter execute --inplace notebooks/06_boosting_y_evaluacion.ipynb
 3. **Modelado y evaluación.** El 06 ajusta cinco modelos, fija el umbral en validación y comprueba las etiquetas de las dos zonas retenidas con v1.13. Escribe corridas, métricas y ejemplos de errores en `outputs/ruta_espacial/`. La desviación estándar se calcula entre semillas después de promediar las zonas.
 4. **Despliegue y monitoreo.** La aplicación sigue usando el RF. La promoción del candidato depende de las metas declaradas y de medir con la interfaz el tiempo desde el recuadro hasta el reporte.
 
->>>>>>> 7d16f29 (chore: Added)
 ## 1. Requisitos
 
 - Python 3.11 o superior (probado con Python 3.13 y 3.14).
@@ -62,11 +59,11 @@ Todos los comandos de este README se ejecutan **desde la raíz del repositorio**
 
 Fuente: https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/
 
-| Capa | Contenido |
-|---|---|
-| `treecover2000` | % de cobertura arbórea en el año 2000 (0–100) |
-| `lossyear` | 0 = sin pérdida; 1–24 = año de pérdida (2001–2024) |
-| `datamask` | 0 = sin datos, 1 = tierra, 2 = agua |
+| Capa            | Contenido                                          |
+| --------------- | -------------------------------------------------- |
+| `treecover2000` | % de cobertura arbórea en el año 2000 (0–100)      |
+| `lossyear`      | 0 = sin pérdida; 1–24 = año de pérdida (2001–2024) |
+| `datamask`      | 0 = sin datos, 1 = tierra, 2 = agua                |
 
 Descargar la tesela que contiene la región y recortar la zona piloto (una sola vez):
 
@@ -91,7 +88,6 @@ La primera corrida construye la tabla de celdas (`data/processed/panel_guaviare.
 siguientes la reutilizan. Al terminar, la consola muestra los archivos generados y el tiempo de
 ejecución.
 
-
 ## Hito 2 · Línea base multizona
 
 Reglas fijadas antes de entrenar en `config/hito2.yaml` (commit `dd8469d`, etiqueta `hito2-reglas`).
@@ -102,20 +98,19 @@ Reglas fijadas antes de entrenar en `config/hito2.yaml` (commit `dd8469d`, etiqu
 
 Resultados en `outputs/hito2/`: `registro_linea_base.txt`, `linea_base_corridas.csv`, `linea_base_resumen.csv`.
 
-
 ### Ciclo del agente
 
 Implementado en `src/forestguard/agent.py`, método `ForestGuardAgent.ejecutar()`:
 
-| Paso | Método | Qué hace |
-|---|---|---|
-| Recordar | `recordar()` | Lee el historial de corridas y el feedback de inspecciones (`memory/`) |
-| Percibir | `percibir()` | Lee los ráster y calcula las variables de cada celda hasta el último año disponible |
-| Aprender | `aprender()` | Evalúa el modelo con división temporal, elige el umbral de riesgo en validación y entrena el modelo final sumando las inspecciones confirmadas |
-| Razonar | `razonar()` | Estima el riesgo de cada celda y lo contrasta con sus alertas históricas |
-| Decidir | `decidir()` | Prioriza las K celdas de mayor riesgo y les asigna nivel alta / media / baja |
-| Actuar | `actuar()` | Genera los reportes geolocalizados en `outputs/` |
-| Memorizar | `memorizar()` | Guarda la corrida en `memory/historial.csv` y el modelo entrenado |
+| Paso      | Método        | Qué hace                                                                                                                                       |
+| --------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| Recordar  | `recordar()`  | Lee el historial de corridas y el feedback de inspecciones (`memory/`)                                                                         |
+| Percibir  | `percibir()`  | Lee los ráster y calcula las variables de cada celda hasta el último año disponible                                                            |
+| Aprender  | `aprender()`  | Evalúa el modelo con división temporal, elige el umbral de riesgo en validación y entrena el modelo final sumando las inspecciones confirmadas |
+| Razonar   | `razonar()`   | Estima el riesgo de cada celda y lo contrasta con sus alertas históricas                                                                       |
+| Decidir   | `decidir()`   | Prioriza las K celdas de mayor riesgo y les asigna nivel alta / media / baja                                                                   |
+| Actuar    | `actuar()`    | Genera los reportes geolocalizados en `outputs/`                                                                                               |
+| Memorizar | `memorizar()` | Guarda la corrida en `memory/historial.csv` y el modelo entrenado                                                                              |
 
 ### Ciclo de retroalimentación (aprendizaje)
 
@@ -138,11 +133,11 @@ Implementado en `src/forestguard/agent.py`, método `ForestGuardAgent.ejecutar()
 La aplicación (`streamlit_app.py`) ejecuta el agente real del repositorio. Cada corrida empieza desde cero en
 una carpeta temporal que solo contiene los tres rásteres recortados. Tiene tres pestañas:
 
-| Pestaña | Qué permite |
-|---|---|
-| 1 · Ejecutar el agente | Escenario típico: ciclo completo en vivo, celdas priorizadas, mapa, evaluación del modelo, registro con marca de tiempo y descarga de reportes. Botón para simular inspecciones y reentrenar (ciclo de aprendizaje) |
-| 2 · Escenario de falla | Inyecta una entrada inválida (capa faltante, tamaños distintos, valores fuera de rango, archivo corrupto, zona sin datos o 40 % sin dato) y ejecuta el agente: debe detenerse con un error controlado y sin reportes |
-| 3 · Pruebas de desempeño | Tabla oficial de resultados, ejecución en vivo de un escenario de backtest (con la misma semilla reproduce la bitácora) y la suite abreviada de pruebas |
+| Pestaña                  | Qué permite                                                                                                                                                                                                          |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1 · Ejecutar el agente   | Escenario típico: ciclo completo en vivo, celdas priorizadas, mapa, evaluación del modelo, registro con marca de tiempo y descarga de reportes. Botón para simular inspecciones y reentrenar (ciclo de aprendizaje)  |
+| 2 · Escenario de falla   | Inyecta una entrada inválida (capa faltante, tamaños distintos, valores fuera de rango, archivo corrupto, zona sin datos o 40 % sin dato) y ejecuta el agente: debe detenerse con un error controlado y sin reportes |
+| 3 · Pruebas de desempeño | Tabla oficial de resultados, ejecución en vivo de un escenario de backtest (con la misma semilla reproduce la bitácora) y la suite abreviada de pruebas                                                              |
 
 La pestaña **Inicio** incluye las instrucciones y los casos de prueba sugeridos.
 
@@ -170,16 +165,16 @@ python scripts/pruebas_desempeno.py --zona guaviare --repeticiones 1 --sin-agent
 
 ## 7. Salidas
 
-| Archivo | Contenido |
-|---|---|
-| `outputs/prioridades_<zona>_<año>.csv` | Celdas priorizadas: ranking, coordenadas, riesgo, nivel, historial |
-| `outputs/prioridades_<zona>_<año>.geojson` | Las mismas celdas como polígonos (QGIS, geojson.io) |
-| `outputs/mapa_prioridades_<zona>_<año>.html` | Mapa interactivo con capa satelital |
-| `outputs/resumen_<zona>_<año>.md` | Resumen para quien decide dónde inspeccionar |
-| `outputs/plantilla_feedback_<zona>_<año>.csv` | Plantilla para anotar resultados de inspección |
-| `memory/historial.csv`, `memory/feedback.csv` | Memoria del agente |
-| `memory/modelo_<zona>.joblib` | Modelo entrenado y su umbral |
-| `logs/ejecucion_<zona>.jsonl` | **Registro de ejecución con marca de tiempo** (ver abajo) |
+| Archivo                                       | Contenido                                                          |
+| --------------------------------------------- | ------------------------------------------------------------------ |
+| `outputs/prioridades_<zona>_<año>.csv`        | Celdas priorizadas: ranking, coordenadas, riesgo, nivel, historial |
+| `outputs/prioridades_<zona>_<año>.geojson`    | Las mismas celdas como polígonos (QGIS, geojson.io)                |
+| `outputs/mapa_prioridades_<zona>_<año>.html`  | Mapa interactivo con capa satelital                                |
+| `outputs/resumen_<zona>_<año>.md`             | Resumen para quien decide dónde inspeccionar                       |
+| `outputs/plantilla_feedback_<zona>_<año>.csv` | Plantilla para anotar resultados de inspección                     |
+| `memory/historial.csv`, `memory/feedback.csv` | Memoria del agente                                                 |
+| `memory/modelo_<zona>.joblib`                 | Modelo entrenado y su umbral                                       |
+| `logs/ejecucion_<zona>.jsonl`                 | **Registro de ejecución con marca de tiempo** (ver abajo)          |
 
 ### Registro de ejecución
 
