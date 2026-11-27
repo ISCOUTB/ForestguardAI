@@ -20,6 +20,10 @@ data/processed/*
 !data/processed/guaviare_treecover2000.tif
 !data/processed/guaviare_lossyear.tif
 !data/processed/guaviare_datamask.tif
+# Zonas del Hito 2 que ofrece la aplicación (scripts/preparar_zonas_app.py)
+!data/processed/macarena_*.tif
+!data/processed/chaira_*.tif
+!data/processed/putumayo_*.tif
 
 # ===== Generados por el agente en cada corrida =====
 # Memoria: modelo entrenado, historial y feedback (se recrean al ejecutar)
