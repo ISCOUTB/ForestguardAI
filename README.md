@@ -133,17 +133,32 @@ Implementado en `src/forestguard/agent.py`, método `ForestGuardAgent.ejecutar()
 La aplicación (`streamlit_app.py`) ejecuta el agente real del repositorio. Cada corrida empieza desde cero en
 una carpeta temporal que solo contiene los tres rásteres recortados. Tiene tres pestañas:
 
-| Pestaña                  | Qué permite                                                                                                                                                                                                          |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1 · Ejecutar el agente   | Escenario típico: ciclo completo en vivo, celdas priorizadas, mapa, evaluación del modelo, registro con marca de tiempo y descarga de reportes. Botón para simular inspecciones y reentrenar (ciclo de aprendizaje)  |
-| 2 · Escenario de falla   | Inyecta una entrada inválida (capa faltante, tamaños distintos, valores fuera de rango, archivo corrupto, zona sin datos o 40 % sin dato) y ejecuta el agente: debe detenerse con un error controlado y sin reportes |
-| 3 · Pruebas de desempeño | Tabla oficial de resultados, ejecución en vivo de un escenario de backtest (con la misma semilla reproduce la bitácora) y la suite abreviada de pruebas                                                              |
+| Pestaña                  | Qué permite |
+| ------------------------ | ----------- |
+| 🌲 Analizar una zona      | Elegir una **zona del Hito 2** (Guaviare, Macarena, Chairá, Putumayo) o **dibujar un recuadro** de 0,2° a 1° por lado dentro de Colombia. Ciclo completo en vivo con el tiempo *recuadro → reporte* frente a la meta de 5 min 12 s, celdas priorizadas, **qué variables pesaron en cada celda**, mapa, evaluación, registro con marca de tiempo y descargas. Tabla para **marcar cada celda como confirmada o no** y reentrenar con esas inspecciones (o simularlas para una demo rápida) |
+| ⚠ Escenario de falla      | Inyecta una entrada inválida (capa faltante, tamaños distintos, valores fuera de rango, archivo corrupto, zona sin datos o 40 % sin dato) o un **recuadro imposible** (fuera de Colombia, demasiado grande, cruza teselas, coordenadas al revés): el agente se detiene con un error controlado y sin reportes |
+| 📊 Pruebas de desempeño   | Metas del Hito 1 en las zonas retenidas (RF frente a boosting espacial), tabla oficial de la Fase 3, ejecución en vivo de un escenario de backtest y la suite abreviada de pruebas |
 
-La pestaña **Inicio** incluye las instrucciones y los casos de prueba sugeridos.
+La sección **Inicio** incluye las instrucciones y los casos de prueba sugeridos.
 
-Para ejecutarla en tu computador:
+**Interfaz.** Tema visual en `.streamlit/config.toml` (colores de bosque y tipografías), logo propio en `assets/`
+y un encabezado hecho con los propios datos de Hansen de Guaviare (`assets/banner_guaviare.jpg`). Los resultados
+empiezan por las 5 celdas a visitar primero, con el porqué en una frase y un enlace a Google Maps; el detalle técnico
+(umbral, evaluación, registro, consola) queda en un desplegable. El recuadro se dibuja en el mapa con
+`streamlit-folium`; las secciones usan un selector en lugar de `st.tabs` para que el mapa no quede con altura 0.
+
+**Recuadro personalizado.** Si la tesela de Hansen está en `data/raw/` se recorta de ahí; si no, se lee a
+distancia del servidor de Hansen solo la ventana del recuadro (GDAL `/vsicurl/`), sin descargar la tesela completa.
+El código está en `src/forestguard/zonas.py`.
+
+**Qué pesó en cada celda.** `src/forestguard/explicar.py` descompone el riesgo del Random Forest por caminos de
+decisión: riesgo = punto de partida + aporte de cada variable. Las 3 variables que más subieron el riesgo quedan en
+la columna `factores_principales` del CSV, en el mapa y en el resumen.
+
+Antes de ejecutarla, deja listos los recortes de las 4 zonas (solo la primera vez; descarga la tesela si falta):
 
 ```bash
+python scripts/preparar_zonas_app.py
 streamlit run streamlit_app.py
 ```
 
@@ -196,6 +211,8 @@ forestguard-agent/
 ├── requirements.txt
 ├── requirements-notebooks.txt
 ├── streamlit_app.py    # aplicación web desplegada
+├── .streamlit/         # tema visual de la aplicación
+├── assets/             # logo, ícono y encabezado de la aplicación
 ├── data/
 │   ├── raw/            # teselas descargadas (no se versionan)
 │   └── processed/      # recortes de la zona (versionados) y tabla de celdas
@@ -209,9 +226,12 @@ forestguard-agent/
 │   ├── model.py        # entrenar, elegir umbral y evaluar
 │   ├── agent.py        # ciclo del agente
 │   ├── registro.py     # log de ejecución con marca de tiempo
+│   ├── explicar.py     # qué variables pesaron en cada celda
+│   ├── zonas.py        # zonas del Hito 2 y recuadro personalizado
 │   └── report.py       # CSV, GeoJSON, mapa HTML y resumen
 ├── scripts/
 │   ├── run_agent.py              # ejecuta el agente
+│   ├── preparar_zonas_app.py     # recortes de las 4 zonas para la app
 │   ├── pruebas_desempeno.py      # pruebas de la Fase 3
 │   └── verificar_con_v113.py     # validación con los datos reales de 2025
 ├── memory/             # historial, feedback y modelo (lo crea el agente)

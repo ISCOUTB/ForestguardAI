@@ -11,3 +11,4 @@ pyyaml==6.0.3
 
 # Aplicación web (streamlit_app.py)
 streamlit==1.64.0
+streamlit-folium==0.28.0   # dibujar el recuadro en el mapa

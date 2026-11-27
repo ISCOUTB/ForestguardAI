@@ -1,0 +1,31 @@
+# Tema "bosque" de ForestGuard-Agent. Streamlit lo lee al arrancar (local y Streamlit Cloud).
+[theme]
+base = "light"
+primaryColor = "#2F6B45"              # verde bosque: botones, sliders, pestaña activa
+backgroundColor = "#F6F4EC"           # crema claro
+secondaryBackgroundColor = "#E7EBDD"  # tarjetas, entradas y cabeceras
+textColor = "#1D2A21"
+linkColor = "#2F6B45"
+borderColor = "#CFD7C2"
+dataframeBorderColor = "#D9DFCC"
+dataframeHeaderBackgroundColor = "#E7EBDD"
+showWidgetBorder = true
+baseRadius = "0.7rem"
+buttonRadius = "full"
+font = "'Nunito Sans':https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap"
+headingFont = "'Fraunces':https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&display=swap"
+greenColor = "#2F6B45"
+redColor = "#B4492D"                  # tierra quemada (riesgo alto, errores)
+orangeColor = "#C68A1E"               # ocre (riesgo medio)
+blueColor = "#3D6F8C"
+chartCategoricalColors = ["#2F6B45", "#B4492D", "#C68A1E", "#3D6F8C", "#7D9E3C", "#6B4F3A"]
+
+[theme.sidebar]
+backgroundColor = "#1E3A2A"           # verde musgo oscuro
+secondaryBackgroundColor = "#2A4B38"
+textColor = "#E8F0E2"
+linkColor = "#A9D6A0"
+borderColor = "#3B5D48"
+
+[client]
+toolbarMode = "minimal"   # oculta el menú de desarrollador en la app desplegada

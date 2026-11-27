@@ -27,6 +27,7 @@ import numpy as np
 import pandas as pd
 
 from . import report
+from .explicar import contribuciones, factores_principales
 from .features import ANIO_ULTIMO, FEATURES, calcular_cubos, cargar_panel, construir_panel, tabla_features
 from .model import K, entrenar, entrenar_y_evaluar, guardar_modelo, predecir_riesgo
 from .registro import Registro
@@ -185,6 +186,11 @@ class ForestGuardAgent:
         top["nivel"] = np.select([sobre_umbral & reincidente, sobre_umbral], ["alta", "media"], default="baja")
 
         self.prioridades = top.reset_index(drop=True)
+
+        # Qué variables empujaron el riesgo de cada celda priorizada (riesgo = base + contribuciones)
+        self.contribuciones, self.base_riesgo = contribuciones(self.modelo, self.prioridades)
+        self.prioridades["factores_principales"] = factores_principales(self.contribuciones, self.prioridades)
+
         niveles = self.prioridades["nivel"].value_counts().to_dict()
         print(f"[decidir] top {len(self.prioridades)} celdas | niveles: {niveles}")
         self.registro.evento(
@@ -192,7 +198,7 @@ class ForestGuardAgent:
             niveles=niveles,
             celdas=[{"ranking": int(f.ranking), "celda_id": int(f.celda_id), "lat": round(float(f.lat), 5),
                      "lon": round(float(f.lon), 5), "riesgo": round(float(f.riesgo), 4), "nivel": f.nivel,
-                     "n_alertas_hist": int(f.n_alertas_hist)}
+                     "n_alertas_hist": int(f.n_alertas_hist), "factores": f.factores_principales}
                     for f in self.prioridades.itertuples()],
         )
 
@@ -265,6 +271,34 @@ class ForestGuardAgent:
         self.registro.evento("sistema", "fin_ciclo", segundos=round(time.perf_counter() - inicio, 3),
                              anio_predicho=self.anio_pred)
         return rutas
+
+    # ------------------------------------------------------ inspecciones reales
+    def registrar_inspecciones(self, resultados):
+        """Guarda en memory/feedback.csv el resultado de inspecciones hechas por una persona.
+
+        `resultados` es un DataFrame con celda_id, anio_pred y confirmado (1 = había pérdida, 0 = no).
+        Si una celda ya tenía resultado para ese año, se reemplaza por el nuevo. La próxima corrida del
+        agente usa estas filas al entrenar (ver aprender()).
+        """
+        fb = resultados.dropna(subset=["confirmado"]).copy()
+        if fb.empty:
+            raise ValueError("No hay ninguna celda marcada como confirmada o no confirmada.")
+        if not fb["confirmado"].isin([0, 1]).all():
+            raise ValueError("'confirmado' solo puede ser 1 (sí) o 0 (no).")
+        fb = fb.assign(zona=self.zona)[COLUMNAS_FEEDBACK]
+        fb[["celda_id", "anio_pred", "confirmado"]] = fb[["celda_id", "anio_pred", "confirmado"]].astype(int)
+
+        self.registro.nueva_ejecucion()
+        previo = self._leer_csv(self.ruta_feedback, COLUMNAS_FEEDBACK)
+        todo = fb if previo.empty else pd.concat([previo, fb], ignore_index=True)
+        todo = todo.drop_duplicates(["zona", "celda_id", "anio_pred"], keep="last")
+        self.memoria.mkdir(parents=True, exist_ok=True)
+        todo.to_csv(self.ruta_feedback, index=False)
+        print(f"[inspecciones] {len(fb)} resultados guardados ({int(fb['confirmado'].sum())} confirmadas)")
+        self.registro.evento("aprendizaje", "inspecciones_registradas", inspecciones=len(fb),
+                             confirmadas=int(fb["confirmado"].sum()), total_en_memoria=len(todo),
+                             archivo=str(self.ruta_feedback))
+        return todo
 
     # ------------------------------------------------------- demostración (simulada)
     def simular_feedback(self, semilla=42):

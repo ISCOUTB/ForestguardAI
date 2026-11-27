@@ -16,7 +16,7 @@ COLORES_NIVEL = {"alta": "red", "media": "orange", "baja": "blue"}
 COLUMNAS_CSV = [
     "ranking", "celda_id", "lat", "lon", "riesgo", "nivel",
     "n_alertas_hist", "ultima_alerta", "perdida_ha_ultimo", "perdida_ha_ult3",
-    "pct_bosque_restante", "anio_obs", "anio_pred",
+    "pct_bosque_restante", "anio_obs", "anio_pred", "factores_principales",
 ]
 
 
@@ -88,6 +88,7 @@ def crear_mapa(prioridades, meta_celdas, ruta):
                 f"Riesgo: {f['riesgo']:.2f} ({f['nivel']})<br>"
                 f"Alertas históricas: {int(f['n_alertas_hist'])}<br>"
                 f"Pérdida último año: {f['perdida_ha_ultimo']:.1f} ha"
+                + (f"<br><b>Qué pesó:</b> {f['factores_principales']}" if "factores_principales" in f else "")
             ),
         ).add_to(mapa)
 
@@ -136,6 +137,12 @@ def escribir_resumen(ruta, zona, prioridades, resumen_zona, resultados, anio_pre
             f"{f['riesgo']:.2f} | {f['nivel']} | {int(f['n_alertas_hist'])} | {ultima} | "
             f"{f['perdida_ha_ultimo']:.1f} |"
         )
+
+    if "factores_principales" in prioridades.columns:
+        lineas += ["", "### Qué pesó en cada celda", "",
+                   "Variables que más subieron el riesgo (puntos porcentuales de probabilidad):", ""]
+        for _, f in prioridades.iterrows():
+            lineas.append(f"- **#{int(f['ranking'])} · celda {int(f['celda_id'])}:** {f['factores_principales']}")
 
     lineas += [
         "",
